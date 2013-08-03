@@ -176,11 +176,7 @@ sub weight {
 	return $weight."\n";
 }
 
-$valid .= uc $valid;
-
-triggers query_lc => qr/[$valid]+/i;
-	#qr found in another goodie, right usage?
-	#Also, we could use some better regex examples
+triggers query_lc => qr/^((dna|rna|protein|amino ?acid) )?[$valid]+$/i;
 
 handle query_clean => sub {
 	my $query = lc $_;	#query is now lower cased input, raw
@@ -206,7 +202,7 @@ handle query_clean => sub {
 			$sequence =~ tr/t/u/ if $seq_type eq "RNA";
 		}
 	} else {	#Otherwise, we find the first possible sequence >= 6
-		$query =~ /([$valid]{6,})/;
+		$query =~ /([$valid]{6,})/i;
 		$sequence = $1;		# and infer the seq_type
 		if ($sequence =~ /[^$nucleotides]/) {
 			$seq_type = "Amino Acid";

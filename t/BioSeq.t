@@ -75,6 +75,8 @@ That amino acid sequence weighs about 1087.32 dalton
 	#~ $long_seq.' dna'	=> test_zci('',html => ''),
 	#~ $long_seq.' rna'	=> test_zci('',html => ''),
 	#~ $long_seq.' protein'	=> test_zci('',html => ''),
+    'circumference of the earth' => undef,
+    'rot13 this' => undef,
 );
 
 done_testing;
