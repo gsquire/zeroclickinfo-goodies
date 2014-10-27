@@ -78,7 +78,7 @@ handle query_raw => sub {
     my (undef, $month, $day) = Monday_of_Week($week, $year);
     return "The " . ordinate($week) . " week of $year began on " .
         "$months[--$month] " . ordinate($day) . '.',
-        html =>"The $week<sup>" . ordsuf($week) . "</sup> week of $year began on " .
+        html => "The $week<sup>" . ordsuf($week) . "</sup> week of $year began on " .
             "$months[$month] $day<sup>" . ordsuf($day) . '</sup>.';
 };
 
