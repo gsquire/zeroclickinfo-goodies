@@ -69,17 +69,21 @@ handle query_raw => sub {
     if ($week eq 'current' and $year eq 'current') {
         return "We are in currently in the " . ordinate($dt->week_number) .
                 ' week of ' . $dt->year . '.',
-            html => 'We are in currently in the ' . $dt->week_number
+            html => '<div class="zci_caption">' . 'We are in currently in the ' . $dt->week_number
                     . '<sup>' . ordsuf($dt->week_number) . '</sup>'
-                    . ' week of ' . $dt->year . '.';
+                    . ' week of ' . $dt->year . '.' . '</div>'
+                    . '<div class="zci_subheader">' . 'Assuming the week starts on Monday.'
+                    . '</div>';
     } elsif ($year eq 'current') {
         $year = $dt->year();
     }
     my (undef, $month, $day) = Monday_of_Week($week, $year);
     return "The " . ordinate($week) . " week of $year began on " .
         "$months[--$month] " . ordinate($day) . '.',
-        html => "The $week<sup>" . ordsuf($week) . "</sup> week of $year began on " .
-            "$months[$month] $day<sup>" . ordsuf($day) . '</sup>.';
+        html => '<div class="zci_caption">' . "The $week<sup>" . ordsuf($week) . "</sup> week of $year began on " .
+            "$months[$month] $day<sup>" . ordsuf($day) . '</sup>.' . '</div'>
+            . '<div class="zci_subheader">' . 'Assuming the week starts on Monday.'
+            . '</div>';
 };
 
 1;
